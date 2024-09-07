@@ -1,32 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const {
-  createSlot,
-  getDoctorSlots,
-  bookAppointment,
-  getDoctorAppointments,
-  getPatientAppointments,
-  cancelAppointment,
-} = require("../controllers/appointment");
+const { createSlot, getSlots } = require('../controllers/appointment'); // Adjust the path as needed
 
-// Middleware to protect routes (assuming user authentication middleware is set up)
+// Route to create a slot
+router.post('/slots', createSlot);
 
-// Create slot (protected route)
-router.post("/slots", createSlot);
-
-// Get all slots for a doctor (protected route)
-router.get("/slots", getDoctorSlots);
-
-// Book an appointment (protected route)
-router.post("/appointments/book", bookAppointment);
-
-// Get all appointments for a doctor (protected route)
-router.get("/appointments/doctor", getDoctorAppointments);
-
-// Get all appointments for a patient (protected route)
-router.get("/appointments/patient", getPatientAppointments);
-
-// Cancel an appointment (protected route)
-router.post("/appointments/cancel", cancelAppointment);
+// Route to get all slots
+router.get('/slots', getSlots);
 
 module.exports = router;

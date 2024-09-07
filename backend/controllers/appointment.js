@@ -1,121 +1,58 @@
-const Appointment = require('../models/appointment');
-const AppointmentSlot = require('../models/appointmentSlot');
+const Slot = require('../models/appointment'); // Adjust the path as needed
 
-// Create a Slot
-exports.createSlot = async (req, res) => {
-  const { date, startTime, endTime } = req.body;
-  const doctorId = req.user.id; // Assuming user authentication middleware is setting req.user
-
+// Controller function to create a new slot
+const createSlot = async (req, res) => {
   try {
-    const slot = new AppointmentSlot({
-      doctor: doctorId,
+    const { doctorId, date, startTime, endTime } = req.body;
+
+    // Create a new slot instance
+    const newSlot = new Slot({
+      doctorId,
       date,
       startTime,
       endTime,
     });
 
-    await slot.save();
+    // Save the slot to the database
+    const savedSlot = await newSlot.save();
+
+    // Send a success response
     res.status(201).json({
       success: true,
-      message: 'Appointment slot created successfully.',
-      slot,
+      message: 'Slot created successfully',
+      data: savedSlot,
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    console.error('Error creating slot:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to create slot',
+    });
   }
 };
 
-// Get All Slots for a Doctor
-exports.getDoctorSlots = async (req, res) => {
-  const doctorId = req.user.id; // Assuming user authentication middleware is setting req.user
-
+// Controller function to get all slots
+const getSlots = async (req, res) => {
   try {
-    const slots = await AppointmentSlot.find({ doctor: doctorId }).exec();
-    res.status(200).json({ success: true, slots });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
+    // Retrieve all slots from the database
+    const slots = await Slot.find();
 
-// Book an Appointment
-exports.bookAppointment = async (req, res) => {
-  const { slotId } = req.body;
-  const patientId = req.user.id; // Assuming user authentication middleware is setting req.user
-
-  try {
-    const slot = await AppointmentSlot.findById(slotId).exec();
-
-    if (!slot || !slot.isAvailable) {
-      return res.status(400).json({ success: false, message: 'Slot not available' });
-    }
-
-    const appointment = new Appointment({
-      patient: patientId,
-      doctor: slot.doctor,
-      slot: slotId,
-      appointmentDate: slot.date,
-    });
-
-    slot.isAvailable = false;
-    await slot.save();
-    await appointment.save();
-
-    res.status(201).json({
+    // Send a success response with the slots data
+    res.status(200).json({
       success: true,
-      message: 'Appointment booked successfully.',
-      appointment,
+      data: slots,
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    console.error('Error fetching slots:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch slots',
+    });
   }
 };
 
-// Get Appointments for a Doctor
-exports.getDoctorAppointments = async (req, res) => {
-  const doctorId = req.user.id; // Assuming user authentication middleware is setting req.user
-
-  try {
-    const appointments = await Appointment.find({ doctor: doctorId }).populate('patient').exec();
-    res.status(200).json({ success: true, appointments });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
+module.exports = {
+  createSlot,
+  getSlots,
 };
 
-// Get Appointments for a Patient
-exports.getPatientAppointments = async (req, res) => {
-  const patientId = req.user.id; // Assuming user authentication middleware is setting req.user
-
-  try {
-    const appointments = await Appointment.find({ patient: patientId }).populate('doctor').exec();
-    res.status(200).json({ success: true, appointments });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-// Cancel an Appointment
-exports.cancelAppointment = async (req, res) => {
-  const { appointmentId } = req.body;
-  const patientId = req.user.id; // Assuming user authentication middleware is setting req.user
-
-  try {
-    const appointment = await Appointment.findOne({ _id: appointmentId, patient: patientId }).exec();
-
-    if (!appointment) {
-      return res.status(404).json({ success: false, message: 'Appointment not found or not booked by you' });
-    }
-
-    const slot = await AppointmentSlot.findById(appointment.slot).exec();
-    if (slot) {
-      slot.isAvailable = true;
-      await slot.save();
-    }
-
-    await appointment.remove();
-
-    res.status(200).json({ success: true, message: 'Appointment canceled successfully.' });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};

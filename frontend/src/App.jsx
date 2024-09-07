@@ -26,7 +26,7 @@ import Profile from "./pages/profile/main";
 import UserView from "./pages/user/view";
 import UserEdit from "./pages/user/edit";
 import DoctorSignup from "./pages/Auth/doctorsignup";
-
+import AppointmentSlots from "./components/calender/appointment";
 
 function App() {
   return (
@@ -48,7 +48,7 @@ function App() {
           <Route path="/forget-password" element={<Forgetpassword />} />
           <Route path="//reset-password/:token" element={<ResetPassword />} />
 
-          <Route path="/register" element={<Register /> } />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/profile"
             element={
@@ -98,6 +98,14 @@ function App() {
             }
           />
           <Route
+            path="/appointment"
+            element={
+              <Layout>
+                <AppointmentSlots />
+              </Layout>
+            }
+          />
+          <Route
             path="/viewProfile"
             element={
               <Layout>
@@ -105,8 +113,22 @@ function App() {
               </Layout>
             }
           />
-          <Route path="/user-view/:userId" element={<Layout><UserView /></Layout> }/>
-          <Route path="/edit/:userId" element={<Layout><UserEdit /></Layout>} />
+          <Route
+            path="/user-view/:userId"
+            element={
+              <Layout>
+                <UserView />
+              </Layout>
+            }
+          />
+          <Route
+            path="/edit/:userId"
+            element={
+              <Layout>
+                <UserEdit />
+              </Layout>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
