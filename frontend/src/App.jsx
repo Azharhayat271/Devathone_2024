@@ -25,6 +25,7 @@ import LocalStorageWatcher from "./utils/tokenValidator/authwatcher";
 import Profile from "./pages/profile/main";
 import UserView from "./pages/user/view";
 import UserEdit from "./pages/user/edit";
+import DoctorSignup from "./pages/Auth/doctorsignup";
 
 function App() {
   return (
@@ -42,10 +43,11 @@ function App() {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/doctor-signup" element={<DoctorSignup />} />
           <Route path="/forget-password" element={<Forgetpassword />} />
           <Route path="//reset-password/:token" element={<ResetPassword />} />
 
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register /> } />
           <Route
             path="/profile"
             element={

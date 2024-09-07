@@ -1,15 +1,13 @@
 // apiUtils.js
 import axios from "../../utils/axios/axiosInstance";
 
-export const LoginAPI = async ({
+export const RegisterAPI = async ({
   name,
   username,
   gender,
   email,
   password,
   phoneNo,
-  speciality,
-  medicalLicense,
 }) => {
   let resolved = {
     error: null,
@@ -18,7 +16,7 @@ export const LoginAPI = async ({
 
   try {
     let res = await axios({
-      url: "/api/users/registerdoctor",
+      url: "/api/users/register",
       method: "POST",
       data: {
         name,
@@ -27,8 +25,6 @@ export const LoginAPI = async ({
         email,
         password,
         phoneNo,
-        speciality,
-        medicalLicense,
       },
     });
     resolved.data = res.data;
