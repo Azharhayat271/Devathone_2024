@@ -165,11 +165,11 @@ const Signup = () => {
                 mx: "auto",
               }}
             >
-              {/* <img
+               {/* <img
                 src={Img2}
                 alt="Logo"
                 style={{ marginBottom: "40px", maxWidth: "290px" }}
-              /> */}
+              />  */}
               <Typography
                 component="h1"
                 variant="h5"
