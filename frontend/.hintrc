@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "create-element-svg": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "user-select",
+          "-moz-appearance",
+          "-webkit-line-break",
+          "overflow-anchor",
+          "-webkit-overflow-scrolling"
+        ]
+      }
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_chr <= 125",
+    "not chrome <= 125",
+    "not edge <= 125",
+    "not firefox <= 126",
+    "not safari <= 17.5",
+    "not samsung <= 25",
+    "not and_ff <= 126"
+  ]
+}

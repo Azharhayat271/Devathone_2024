@@ -1,0 +1,29 @@
+
+
+  
+  .fc-button.fc-state-active {
+    background: #007bff;
+    color: #fff;
+  }
+  
+  .fc-day {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .fc-day-number {
+    font-size: 1rem;
+  }
+  
+  .fc-today {
+    background-color: #ffeb3b; /* Highlight color */
+  }
+  
+ 
+  
+  .fc-day-header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  

@@ -1,0 +1,49 @@
+/* layout.css */
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensures the topbar is above other content */
+  background-color: #fff; /* Background color to cover content behind */
+  border-bottom: 1px solid #ddd; /* Optional: Adds a border for visual separation */
+  margin-left: 18%; /* Keep this if your sidebar has a similar margin */
+  padding: 10px; /* Add padding as needed for spacing */
+}
+
+/* media query */
+@media (max-width: 480px) {
+  .topbar {
+    margin-left: 0;
+  }
+}
+
+.layout-content {
+  display: flex;
+  flex: 1;
+  /* margin-top: 60px; Adjust this to match or exceed the height of your topbar */
+}
+
+.main-content {
+  margin-left: 18%;
+  padding: 20px;
+  background-color: #f4f4f9;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* media query */
+@media (max-width: 480px) {
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+.activator {
+  margin-left: 4%;
+}

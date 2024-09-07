@@ -1,0 +1,10 @@
+
+
+.text-danger {
+    color: #ff1100; /* Bootstrap red for error messages */
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px; /* Adjust spacing between field and error message */
+    display: block; /* Ensures error message appears below the field */
+}
+
