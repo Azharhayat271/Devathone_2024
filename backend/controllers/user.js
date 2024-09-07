@@ -149,12 +149,13 @@ exports.verifyEmailLink = async (req, res) => {
 
     if (user.verifyEmailToken(token)) {
       user.isEmailVerified = true;
+      user.status="approved";
       user.emailVerificationCode = undefined;
       user.emailVerificationTokenExpires = undefined;
       await user.save();
 
       // Redirect to an external URL (e.g., google.com) after successful verification
-      return res.redirect("https://www.google.com");
+      return res.redirect("http://localhost:5173/login");
     } else {
       return res
         .status(400)
