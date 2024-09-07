@@ -74,7 +74,7 @@ const Signup = () => {
           setMessage(result.error || "An error occurred");
           setSeverity("error");
         } else {
-          setMessage("Registration successful!");
+          setMessage("Registration successful! Please check your email to verify your account.");
           setSeverity("success");
           setTimeout(() => {
             navigate("/login");
@@ -165,11 +165,11 @@ const Signup = () => {
                 mx: "auto",
               }}
             >
-              {/* <img
+               {/* <img
                 src={Img2}
                 alt="Logo"
                 style={{ marginBottom: "40px", maxWidth: "290px" }}
-              /> */}
+              />  */}
               <Typography
                 component="h1"
                 variant="h5"

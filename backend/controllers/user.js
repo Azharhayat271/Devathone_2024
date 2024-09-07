@@ -75,8 +75,9 @@ exports.registerDoctor = async (req, res) => {
             "Your password is found in the Leak Password Dictonary. Please use a stronger password.",
         });
     }
+    const role = "doctor";
 
-    const user = new User({ name, email, username, password, gender, phoneNo, speciality, medicalLicense });
+    const user = new User({ name, email, username, password, gender, phoneNo, speciality, medicalLicense , role});
 
     const emailVerificationToken = user.createEmailVerificationToken();
     await user.save();

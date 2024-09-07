@@ -15,12 +15,13 @@ const {
   getUserStatistics,
   loginUserViaGoogle,
   registerUserViaGoogle,
+  registerDoctor
 } = require("../controllers/user"); // Adjust the path as necessary
 
 const router = express.Router();
 
 router.post("/register", registerUser);
-router.post("/registerdoctor", registerUser);
+router.post("/registerdoctor", registerDoctor);
 router.post("/verify-email", verifyEmail);
 router.get("/verify-email", verifyEmailLink);
 router.post("/login", login);

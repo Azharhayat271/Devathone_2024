@@ -27,6 +27,7 @@ import UserView from "./pages/user/view";
 import UserEdit from "./pages/user/edit";
 import DoctorSignup from "./pages/Auth/doctorsignup";
 
+
 function App() {
   return (
     <>

@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
-import Logo from "./../assets/images/logo.png";
+import Logo from "./../assets/images/logo1.png";
 import LogoIcon from "./../assets/images/logo-icon.png";
 import { Link } from "react-router-dom";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import DynamicFormIcon from "@mui/icons-material/DynamicForm";
-import ErrorIcon from "@mui/icons-material/Error";
-import LoginIcon from "@mui/icons-material/Login";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
-import SettingsIcon from "@mui/icons-material/Settings";
-import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt"; // Icon for All Patients
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital"; // Icon for All Doctors
+import DynamicFormIcon from "@mui/icons-material/DynamicForm"; // Icon for Users forms
+import ErrorIcon from "@mui/icons-material/Error"; // Icon for Validation forms
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; // Icon for Calendar
+import SettingsIcon from "@mui/icons-material/Settings"; // Icon for Profile Settings
+import LogoutIcon from "@mui/icons-material/Logout"; // Icon for Logout
+import DashboardIcon from "@mui/icons-material/Dashboard"; // Icon for Dashboard
+import Typography from "@mui/material/Typography"; // Material UI Typography for text
 
-const sidebar = ({ isMobileActive }) => {
+const Sidebar = ({ isMobileActive }) => {
   const [mobileActive, setMobileActive] = useState(false);
 
   useEffect(() => {
     setMobileActive(isMobileActive);
   }, [isMobileActive]);
 
-  //handle click functon
+  // Handle click function
   const handleClick = () => {
     setMobileActive(!mobileActive);
   };
@@ -32,42 +32,72 @@ const sidebar = ({ isMobileActive }) => {
   return (
     <div>
       <aside className={`sidebar  ${mobileActive ? "sidebar-open" : ""}`}>
-        <button type="button" class="sidebar-close-btn" onClick={handleClick}>
+        <button
+          type="button"
+          className="sidebar-close-btn"
+          onClick={handleClick}
+        >
           <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
         </button>
-        <div>
-          <a class="sidebar-logo">
-            <img src={Logo} alt="site logo" class="light-logo" />
-            <img src={Logo} alt="site logo" class="dark-logo" />
-            <img src={LogoIcon} alt="site logo" class="logo-icon" />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center", // Align logo and text vertically with other elements
+            padding: "10px 20px", // Adjust padding to match the top bar's spacing
+          }}
+        >
+          <a
+            className="sidebar-logo"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              paddingTop: "20px", // Adjust this value as needed
+              border: "none", // Ensure no border
+              boxShadow: "none", // Ensure no shadow
+            }}
+          >
+            <img
+              src={Logo}
+              alt="site logo"
+              className="light-logo"
+              style={{ marginRight: "10px" }} // Space between logo and text
+            />
+            <Typography
+              variant="h6"
+              style={{ color: "#4D6E72", fontWeight: "bold" }}
+            >
+            Health Portal
+            </Typography>
           </a>
         </div>
-        <div class="sidebar-menu-area open">
-          <ul class="sidebar-menu show" id="sidebar-menu">
+        <div className="sidebar-menu-area open">
+          <ul
+            className="sidebar-menu show"
+            id="sidebar-menu"
+          >
             <li>
               <Link to="/newDashboardDesign">
                 <a>
-                  <DashboardCustomizeIcon className="me-3" />
-                  <span>New Dashboard</span>
+                  <DashboardIcon className="me-3" />
+                  <span>Dashboard</span>
                 </a>
               </Link>
             </li>
 
-            <li class="sidebar-menu-group-title">User</li>
+            <li className="sidebar-menu-group-title">User</li>
             <Link to="/table">
               <li>
                 <a>
                   <PeopleAltIcon className="me-3"></PeopleAltIcon>
-                  <span>Users Table</span>
+                  <span>All Patients</span>
                 </a>
               </li>
             </Link>
             <Link to="/grid">
               <li>
                 <a>
-                  <PeopleOutlineIcon className="me-3"></PeopleOutlineIcon>
-
-                  <span>Users Grid</span>
+                  <LocalHospitalIcon className="me-3"></LocalHospitalIcon>
+                  <span>All Doctors</span>
                 </a>
               </li>
             </Link>
@@ -75,7 +105,6 @@ const sidebar = ({ isMobileActive }) => {
               <li>
                 <a>
                   <DynamicFormIcon className="me-3"></DynamicFormIcon>
-
                   <span>Users forms</span>
                 </a>
               </li>
@@ -84,7 +113,6 @@ const sidebar = ({ isMobileActive }) => {
               <li>
                 <a>
                   <ErrorIcon className="me-3"></ErrorIcon>
-
                   <span>Validation forms</span>
                 </a>
               </li>
@@ -93,38 +121,12 @@ const sidebar = ({ isMobileActive }) => {
               <li>
                 <a>
                   <CalendarMonthIcon className="me-3"></CalendarMonthIcon>
-                  <span>Calender</span>
+                  <span>Calendar</span>
                 </a>
               </li>
             </Link>
 
-            {/* <li>
-                            <a href="chat-message.html">
-                                <iconify-icon icon="bi:chat-dots" class="menu-icon"></iconify-icon>
-                                <span>Chat</span>
-                            </a>
-                        </li> */}
-            <li class="sidebar-menu-group-title">Authentication</li>
-
-            <Link to="/login">
-              <li>
-                <a>
-                  <LoginIcon className="me-3"></LoginIcon>
-
-                  <span>Login Page</span>
-                </a>
-              </li>
-            </Link>
-            <Link to="/register">
-              <li>
-                <a>
-                  <HowToRegIcon className="me-3"></HowToRegIcon>
-                  <span>Register Page</span>
-                </a>
-              </li>
-            </Link>
-
-            <li class="sidebar-menu-group-title">Settings</li>
+            <li className="sidebar-menu-group-title">Settings</li>
             <Link to="/viewProfile">
               <li>
                 <a>
@@ -137,7 +139,7 @@ const sidebar = ({ isMobileActive }) => {
             <Link>
               <li>
                 <a onClick={handleClickLogout}>
-                  <SettingsIcon className="me-3"></SettingsIcon>
+                  <LogoutIcon className="me-3"></LogoutIcon>
                   <span>Logout</span>
                 </a>
               </li>
@@ -149,4 +151,4 @@ const sidebar = ({ isMobileActive }) => {
   );
 };
 
-export default sidebar;
+export default Sidebar;

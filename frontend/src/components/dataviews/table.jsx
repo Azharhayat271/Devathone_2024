@@ -144,12 +144,12 @@ const Table = () => {
     return (
         <div>
             <div className="dashboard-main-body">
-                <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
+                {/* <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
                     <h6 className="fw-semibold mb-0">Users Grid</h6>
                     <a href="add-user.html" className="btn btn-primary text-sm btn-sm px-8 py-6 radius-8">
                         Add New User
                     </a>
-                </div>
+                </div> */}
 
                 <div className="card h-100 p-0 radius-12">
                     <div className="card-header border-bottom bg-base py-16 px-24 d-flex align-items-center flex-wrap gap-3">
