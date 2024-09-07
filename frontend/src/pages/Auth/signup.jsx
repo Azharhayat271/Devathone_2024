@@ -103,13 +103,11 @@ const Signup = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      debugger;
       const response = await RegisterGoogleAPI({
         email: user.email,
         name: user.displayName,
         image: user.photoURL,
       });
-      debugger;
 
       console.log("Google sign-in successful", user);
       // navigate("/newDashboardDesign");

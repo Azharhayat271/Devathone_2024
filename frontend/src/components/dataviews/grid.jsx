@@ -50,47 +50,14 @@ const Grid = () => {
                 </div>
 
                 <div className="card h-100 p-0 radius-12">
-                    <div className="card-header border-bottom bg-base py-16 px-24 d-flex align-items-center flex-wrap gap-3 justify-content-between">
-                        <div className="d-flex align-items-center flex-wrap gap-3">
-                            <span className="text-md fw-medium text-secondary-light mb-0">Show</span>
-                            <select className="form-select form-select-sm w-auto ps-12 py-6 radius-12 h-40-px">
-                                {[...Array(10).keys()].map(i => (
-                                    <option key={i + 1}>{i + 1}</option>
-                                ))}
-                            </select>
-                            <form className="navbar-search">
-                                <input type="text" className="bg-base h-40-px w-auto" name="search" placeholder="Search" />
-                                <Icon icon="ion:search-outline" className="icon" />
-                            </form>
-                        </div>
-                        <a href="view-profile.html" className="btn btn-primary text-sm btn-sm px-12 py-12 radius-8 d-flex align-items-center gap-2">
-                            <Icon icon="ic:baseline-plus" className="icon text-xl line-height-1" />
-                            Add New Doctor
-                        </a>
-                    </div>
+                  
                     <div className="card-body p-24">
                         <div className="row gy-4">
                             {users.map(user => (
                                 <div key={user.id} className="col-xxl-3 col-md-6 user-grid-card">
                                     <div className="position-relative border radius-16 overflow-hidden">
                                         <img src={Image1} alt="" className="w-100 object-fit-cover" />
-                                        <div className="dropdown position-absolute top-0 end-0 me-16 mt-16">
-                                            <button type="button" data-bs-toggle="dropdown" aria-expanded="false" className="bg-white-gradient-light w-32-px h-32-px radius-8 border border-light-white d-flex justify-content-center align-items-center text-white">
-                                                <Icon icon="entypo:dots-three-vertical" className="icon" />
-                                            </button>
-                                            <ul className="dropdown-menu p-12 border bg-base shadow">
-                                                <li>
-                                                    <a className="dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center gap-10" href="#">
-                                                        Edit
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <button type="button" className="delete-btn dropdown-item px-16 py-8 rounded text-secondary-light bg-hover-danger-100 text-hover-danger-600 d-flex align-items-center gap-10">
-                                                        Delete
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                  
 
                                         <div className="ps-16 pb-16 pe-16 text-center mt--50">
                                             <img src={User} alt="" className="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover" />
@@ -99,7 +66,7 @@ const Grid = () => {
 
                                             <div className="center-border position-relative bg-danger-gradient-light radius-8 p-12 d-flex align-items-center gap-4">
                                                 <div className="text-center w-50">
-                                                    <h6 className="text-md mb-0">Specialization</h6>
+                                                    <h6 className="text-md mb-0">Speciality</h6>
                                                     <span className="text-secondary-light text-sm mb-0">{user.speciality}</span>
                                                 </div>
                                                 <div className="text-center w-50">

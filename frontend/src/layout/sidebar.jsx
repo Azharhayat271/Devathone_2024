@@ -11,27 +11,60 @@ import SettingsIcon from "@mui/icons-material/Settings"; // Icon for Profile Set
 import LogoutIcon from "@mui/icons-material/Logout"; // Icon for Logout
 import DashboardIcon from "@mui/icons-material/Dashboard"; // Icon for Dashboard
 import Typography from "@mui/material/Typography"; // Material UI Typography for text
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 const Sidebar = ({ isMobileActive }) => {
   const [mobileActive, setMobileActive] = useState(false);
+  const [userRole, setUserRole] = useState("user"); // Default role
 
   useEffect(() => {
     setMobileActive(isMobileActive);
   }, [isMobileActive]);
 
-  // Handle click function
+  useEffect(() => {
+    // Retrieve role from local storage
+    const role = localStorage.getItem("role") || "user"; // Default to 'user' if not found
+    setUserRole(role);
+  }, []);
+
   const handleClick = () => {
     setMobileActive(!mobileActive);
   };
 
   const handleClickLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("role"); // Optional: remove role on logout
     window.location.href = "/";
+  };
+
+  const menuItems = {
+    admin: [
+      { to: "/newDashboardDesign", icon: <DashboardIcon className="me-3" />, text: "Dashboard" },
+      { to: "/table", icon: <PeopleAltIcon className="me-3" />, text: "All Patients" },
+      { to: "/dcotors", icon: <LocalHospitalIcon className="me-3" />, text: "All Doctors" },
+      { to: "/formLayout", icon: <DynamicFormIcon className="me-3" />, text: "Users forms" },
+      { to: "/formValidations", icon: <ErrorIcon className="me-3" />, text: "Validation forms" },
+      { to: "/calender", icon: <CalendarMonthIcon className="me-3" />, text: "Calendar" },
+    ],
+    user: [
+      { to: "/welcomeuser", icon: <DashboardIcon className="me-3" />, text: "Dashboard" },
+      { to: "/calender", icon: <CalendarMonthIcon className="me-3" />, text: "Calendar" },
+      { to: "/viewProfile", icon: <SettingsIcon className="me-3" />, text: "Profile Setting" },
+      { to: "/dcotors", icon: <LocalHospitalIcon className="me-3" />, text: "All Doctors" },
+    ],
+    doctor: [
+      { to: "/welcomeuser", icon: <DashboardIcon className="me-3" />, text: "Dashboard" },
+      { to: "/appointment", icon: <AssignmentIcon className="me-3" />, text: "Slots" },
+      { to: "/bookings", icon: <LocalPhoneIcon className="me-3" />, text: "slots" },
+      { to: "/calender", icon: <CalendarMonthIcon className="me-3" />, text: "Calendar" },
+      { to: "/viewProfile", icon: <SettingsIcon className="me-3" />, text: "Profile Setting" },
+    ]
   };
 
   return (
     <div>
-      <aside className={`sidebar  ${mobileActive ? "sidebar-open" : ""}`}>
+      <aside className={`sidebar ${mobileActive ? "sidebar-open" : ""}`}>
         <button
           type="button"
           className="sidebar-close-btn"
@@ -42,8 +75,8 @@ const Sidebar = ({ isMobileActive }) => {
         <div
           style={{
             display: "flex",
-            alignItems: "center", // Align logo and text vertically with other elements
-            padding: "10px 20px", // Adjust padding to match the top bar's spacing
+            alignItems: "center",
+            padding: "10px 20px",
           }}
         >
           <a
@@ -51,22 +84,22 @@ const Sidebar = ({ isMobileActive }) => {
             style={{
               display: "flex",
               alignItems: "center",
-              paddingTop: "20px", // Adjust this value as needed
-              border: "none", // Ensure no border
-              boxShadow: "none", // Ensure no shadow
+              paddingTop: "20px",
+              border: "none",
+              boxShadow: "none",
             }}
           >
             <img
               src={Logo}
               alt="site logo"
               className="light-logo"
-              style={{ marginRight: "10px" }} // Space between logo and text
+              style={{ marginRight: "10px" }}
             />
             <Typography
               variant="h6"
               style={{ color: "#4D6E72", fontWeight: "bold" }}
             >
-            Health Portal
+              Health Portal
             </Typography>
           </a>
         </div>
@@ -75,75 +108,23 @@ const Sidebar = ({ isMobileActive }) => {
             className="sidebar-menu show"
             id="sidebar-menu"
           >
-            <li>
-              <Link to="/newDashboardDesign">
-                <a>
-                  <DashboardIcon className="me-3" />
-                  <span>Dashboard</span>
-                </a>
-              </Link>
-            </li>
-
-            <li className="sidebar-menu-group-title">User</li>
-            <Link to="/table">
-              <li>
-                <a>
-                  <PeopleAltIcon className="me-3"></PeopleAltIcon>
-                  <span>All Patients</span>
-                </a>
+            {menuItems[userRole]?.map((item, index) => (
+              <li key={index}>
+                <Link to={item.to}>
+                  <a>
+                    {item.icon}
+                    <span>{item.text}</span>
+                  </a>
+                </Link>
               </li>
-            </Link>
-            <Link to="/grid">
-              <li>
-                <a>
-                  <LocalHospitalIcon className="me-3"></LocalHospitalIcon>
-                  <span>All Doctors</span>
-                </a>
-              </li>
-            </Link>
-            <Link to="/formLayout">
-              <li>
-                <a>
-                  <DynamicFormIcon className="me-3"></DynamicFormIcon>
-                  <span>Users forms</span>
-                </a>
-              </li>
-            </Link>
-            <Link to="/formValidations">
-              <li>
-                <a>
-                  <ErrorIcon className="me-3"></ErrorIcon>
-                  <span>Validation forms</span>
-                </a>
-              </li>
-            </Link>
-            <Link to="/calender">
-              <li>
-                <a>
-                  <CalendarMonthIcon className="me-3"></CalendarMonthIcon>
-                  <span>Calendar</span>
-                </a>
-              </li>
-            </Link>
-
+            ))}
             <li className="sidebar-menu-group-title">Settings</li>
-            <Link to="/viewProfile">
-              <li>
-                <a>
-                  <SettingsIcon className="me-3"></SettingsIcon>
-                  <span>Profile Setting</span>
-                </a>
-              </li>
-            </Link>
-
-            <Link>
-              <li>
-                <a onClick={handleClickLogout}>
-                  <LogoutIcon className="me-3"></LogoutIcon>
-                  <span>Logout</span>
-                </a>
-              </li>
-            </Link>
+            <li>
+              <a onClick={handleClickLogout}>
+                <LogoutIcon className="me-3" />
+                <span>Logout</span>
+              </a>
+            </li>
           </ul>
         </div>
       </aside>

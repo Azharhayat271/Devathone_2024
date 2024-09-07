@@ -12,7 +12,6 @@ const CalendarSection = () => {
     const fetchSlots = async () => {
       try {
         const result = await getAllSlots();
-        debugger;
         if (result.error === null) {
           setSlots(result.data.data);
         } else {
@@ -51,9 +50,7 @@ const CalendarSection = () => {
                       <Typography variant="body1">
                         <strong>End Time:</strong> {slot.endTime}
                       </Typography>
-                      <Typography variant="body1">
-                        <strong>Doctor ID:</strong> {slot.doctorId}
-                      </Typography>
+                   
                     </Card>
                   </Grid>
                 ))

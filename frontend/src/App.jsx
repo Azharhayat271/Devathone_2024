@@ -27,6 +27,8 @@ import UserView from "./pages/user/view";
 import UserEdit from "./pages/user/edit";
 import DoctorSignup from "./pages/Auth/doctorsignup";
 import AppointmentSlots from "./components/calender/appointment";
+import PatientTable from "./components/dataviews/patienttable";
+import Dashboardforuser from "./../src/pages/welcomepages/welcomepage"
 
 function App() {
   return (
@@ -66,6 +68,14 @@ function App() {
             }
           />
           <Route
+            path="/welcomeuser"
+            element={
+              <Layout>
+                <Dashboardforuser />
+              </Layout>
+            }
+          />
+          <Route
             path="/formValidations"
             element={
               <Layout>
@@ -82,7 +92,15 @@ function App() {
             }
           />
           <Route
-            path="/grid"
+            path="/patienttable"
+            element={
+              <Layout>
+                <PatientTable />
+              </Layout>
+            }
+          />
+          <Route
+            path="/dcotors"
             element={
               <Layout>
                 <Grid />

@@ -33,13 +33,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    debugger;
     e.preventDefault();
     setLoading(true);
 
     try {
       // Replace with your API login call
-      debugger;
       const response = await LoginAPI({ email, password });
       if (response.error) {
         setError(response.error);
@@ -73,7 +71,6 @@ const Login = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      debugger;
       // Call LoginGoogleAPI here
       const response = await LoginGoogleAPI({ email: user.email });
 
@@ -85,7 +82,13 @@ const Login = () => {
 
         localStorage.setItem("email", user.email);
         localStorage.setItem("image", user.photoURL);
-        navigate("/newDashboardDesign");
+        if(user.role=="admin"){
+          navigate("/newDashboardDesign");
+
+        }
+        else{
+          navigate("/welcomeuser");
+        }
       } else {
         setError(response.message || "Failed to sign in with Google.");
         setOpenSnackbar(true);
