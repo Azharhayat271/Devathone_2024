@@ -18,7 +18,7 @@ const appointmentRoutes = require("./routes/appointment");
 
 // All routes
 app.use("/api/users", userRoutes);
-app.use("/api/appointment", appointmentRoutes);
+app.use("/api/appointments", appointmentRoutes);
 
 app.get("/", (req, res) => {
   res.send("We are live");
