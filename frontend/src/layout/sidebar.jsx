@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "./../assets/images/logo1.png";
-import LogoIcon from "./../assets/images/logo-icon.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt"; // Icon for All Patients
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital"; // Icon for All Doctors
 import DynamicFormIcon from "@mui/icons-material/DynamicForm"; // Icon for Users forms
@@ -13,10 +12,12 @@ import DashboardIcon from "@mui/icons-material/Dashboard"; // Icon for Dashboard
 import Typography from "@mui/material/Typography"; // Material UI Typography for text
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import BookIcon from '@mui/icons-material/Book';
 
 const Sidebar = ({ isMobileActive }) => {
   const [mobileActive, setMobileActive] = useState(false);
   const [userRole, setUserRole] = useState("user"); // Default role
+  const location = useLocation();
 
   useEffect(() => {
     setMobileActive(isMobileActive);
@@ -49,16 +50,18 @@ const Sidebar = ({ isMobileActive }) => {
     ],
     user: [
       { to: "/welcomeuser", icon: <DashboardIcon className="me-3" />, text: "Dashboard" },
-      { to: "/calender", icon: <CalendarMonthIcon className="me-3" />, text: "Calendar" },
-      { to: "/viewProfile", icon: <SettingsIcon className="me-3" />, text: "Profile Setting" },
+      { to: "/calender", icon: <CalendarMonthIcon className="me-3" />, text: "Activities" },
       { to: "/dcotors", icon: <LocalHospitalIcon className="me-3" />, text: "All Doctors" },
+      { to: "/booking", icon: <BookIcon className="me-3" />, text: "Appointments" },
+      { to: "/viewProfile", icon: <SettingsIcon className="me-3" />, text: "Profile Setting" },
     ],
     doctor: [
       { to: "/welcomeuser", icon: <DashboardIcon className="me-3" />, text: "Dashboard" },
       { to: "/appointment", icon: <AssignmentIcon className="me-3" />, text: "Slots" },
-      { to: "/bookings", icon: <LocalPhoneIcon className="me-3" />, text: "slots" },
-      { to: "/calender", icon: <CalendarMonthIcon className="me-3" />, text: "Calendar" },
+      { to: "/bookings", icon: <LocalPhoneIcon className="me-3" />, text: "Bookings" },
+      { to: "/calender", icon: <CalendarMonthIcon className="me-3" />, text: "Activities" },
       { to: "/viewProfile", icon: <SettingsIcon className="me-3" />, text: "Profile Setting" },
+
     ]
   };
 
@@ -109,7 +112,7 @@ const Sidebar = ({ isMobileActive }) => {
             id="sidebar-menu"
           >
             {menuItems[userRole]?.map((item, index) => (
-              <li key={index}>
+              <li key={index} className={location.pathname === item.to ? 'active' : ''}>
                 <Link to={item.to}>
                   <a>
                     {item.icon}

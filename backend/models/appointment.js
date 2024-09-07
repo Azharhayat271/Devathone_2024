@@ -17,6 +17,10 @@ const slotSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  isbooked: {
+    type: Boolean,
+    default: false
+  }
   // Additional fields if needed
 });
 

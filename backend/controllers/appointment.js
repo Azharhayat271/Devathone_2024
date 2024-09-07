@@ -5,6 +5,14 @@ const createSlot = async (req, res) => {
   try {
     const { doctorId, date, startTime, endTime } = req.body;
 
+    // Validate input
+    if (!doctorId || !date || !startTime || !endTime) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide all required fields',
+      });
+    }
+
     // Create a new slot instance
     const newSlot = new Slot({
       doctorId,
@@ -51,8 +59,50 @@ const getSlots = async (req, res) => {
   }
 };
 
+// Controller function to book a slot
+const bookSlot = async (req, res) => {
+  try {
+    const { slotId } = req.params;
+
+    // Find the slot by ID
+    const slot = await Slot.findById(slotId);
+
+    if (!slot) {
+      return res.status(404).json({
+        success: false,
+        message: 'Slot not found',
+      });
+    }
+
+    // Check if the slot is already booked
+    if (slot.isBooked) {
+      return res.status(400).json({
+        success: false,
+        message: 'Slot is already booked',
+      });
+    }
+
+    // Update the slot to mark it as booked
+    slot.isBooked = true;
+    const updatedSlot = await slot.save();
+
+    // Send a success response
+    res.status(200).json({
+      success: true,
+      message: 'Slot booked successfully',
+      data: updatedSlot,
+    });
+  } catch (error) {
+    console.error('Error booking slot:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to book slot',
+    });
+  }
+};
+
 module.exports = {
   createSlot,
   getSlots,
+  bookSlot,
 };
-

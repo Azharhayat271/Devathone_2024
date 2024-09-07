@@ -8,3 +8,25 @@
     display: block; /* Ensures error message appears below the field */
 }
 
+.sidebar-menu li {
+    list-style: none;
+  }
+  
+  .sidebar-menu li a {
+    text-decoration: none;
+    color: #000; /* Default text color */
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .sidebar-menu li.active a {
+    background-color: #4D6E72; /* Highlight color for active item */
+    color: #fff; /* Text color for active item */
+    border-radius: 4px; /* Rounded corners */
+  }
+  
+  .sidebar-menu li.active a .me-3 {
+    color: #fff; /* Icon color for active item */
+  }
+  

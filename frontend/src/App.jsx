@@ -28,7 +28,8 @@ import UserEdit from "./pages/user/edit";
 import DoctorSignup from "./pages/Auth/doctorsignup";
 import AppointmentSlots from "./components/calender/appointment";
 import PatientTable from "./components/dataviews/patienttable";
-import Dashboardforuser from "./../src/pages/welcomepages/welcomepage"
+import Dashboardforuser from "./../src/pages/welcomepages/welcomepage";
+import SlotBooking from "./pages/booking/onlinebooking";
 
 function App() {
   return (
@@ -104,6 +105,14 @@ function App() {
             element={
               <Layout>
                 <Grid />
+              </Layout>
+            }
+          />
+          <Route
+            path="/booking"
+            element={
+              <Layout>
+                <SlotBooking />
               </Layout>
             }
           />
