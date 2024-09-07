@@ -14,9 +14,11 @@ app.use(cors());
 connectDB();
 
 const userRoutes = require("./routes/user");
+const appointmentRoutes = require("./routes/appointment");
 
 // All routes
 app.use("/api/users", userRoutes);
+app.use("/api/appointment", appointmentRoutes);
 
 app.get("/", (req, res) => {
   res.send("We are live");
