@@ -20,6 +20,7 @@ const {
 const router = express.Router();
 
 router.post("/register", registerUser);
+router.post("/registerdoctor", registerUser);
 router.post("/verify-email", verifyEmail);
 router.get("/verify-email", verifyEmailLink);
 router.post("/login", login);

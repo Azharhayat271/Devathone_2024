@@ -42,6 +42,14 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+  medicalLicense: {
+        type: String,
+        default: '',
+    },
+    speciality: {
+        type: String,
+        default: '',
+    },
     status: {
         type: String,
         default: 'created',

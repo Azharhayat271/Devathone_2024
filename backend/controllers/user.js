@@ -61,6 +61,51 @@ exports.registerUser = async (req, res) => {
   }
 };
 
+exports.registerDoctor = async (req, res) => {
+  try {
+    const { name, email, username, password, gender, phoneNo, speciality, medicalLicense } = req.body;
+
+    // Check if the password is common
+    if (dumbPasswords.check(password)) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message:
+            "Your password is found in the Leak Password Dictonary. Please use a stronger password.",
+        });
+    }
+
+    const user = new User({ name, email, username, password, gender, phoneNo, speciality, medicalLicense });
+
+    const emailVerificationToken = user.createEmailVerificationToken();
+    await user.save();
+
+    // Send email with the token
+    const emailVerificationUrl = `${req.protocol}://${req.get(
+      "host"
+    )}/api/users/verify-email?token=${emailVerificationToken}&email=${email}`;
+    const message = `Please verify your email by clicking on the following link: ${emailVerificationUrl}`;
+
+    await sendEmail({
+      email: user.email,
+      subject: "Email Verification",
+      message,
+    });
+
+    res
+      .status(201)
+      .json({
+        success: true,
+        message:
+          "User registered. Please check your email to verify your account.",
+      });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
 // Verify email
 exports.verifyEmail = async (req, res) => {
   try {
@@ -246,7 +291,7 @@ exports.getAllUsers = async (req, res) => {
 // Update user by ID
 exports.updateUserById = async (req, res) => {
   const { userId } = req.params;
-  const { name, email, username, gender, phoneNo, image } = req.body; // Added image field
+  const { name, email, username, gender, phoneNo, image, speciality , medicalLicense} = req.body; // Added image field
 
   try {
     // Validate the provided data (optional)
@@ -259,7 +304,7 @@ exports.updateUserById = async (req, res) => {
     // Find user by ID and update the provided fields
     const user = await User.findByIdAndUpdate(
       userId,
-      { name, email, username, gender, phoneNo, image },
+      { name, email, username, gender, phoneNo, image, speciality , medicalLicense },
       { new: true, runValidators: true }
     );
 
