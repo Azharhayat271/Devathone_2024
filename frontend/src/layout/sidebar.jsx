@@ -48,7 +48,7 @@ const sidebar = ({ isMobileActive }) => {
               <Link to="/newDashboardDesign">
                 <a>
                   <DashboardCustomizeIcon className="me-3" />
-                  <span>New Dashboard</span>
+                  <span>Dashboard</span>
                 </a>
               </Link>
             </li>
@@ -58,7 +58,7 @@ const sidebar = ({ isMobileActive }) => {
               <li>
                 <a>
                   <PeopleAltIcon className="me-3"></PeopleAltIcon>
-                  <span>Users Table</span>
+                  <span>All Patients</span>
                 </a>
               </li>
             </Link>
@@ -67,7 +67,7 @@ const sidebar = ({ isMobileActive }) => {
                 <a>
                   <PeopleOutlineIcon className="me-3"></PeopleOutlineIcon>
 
-                  <span>Users Grid</span>
+                  <span>All Doctors</span>
                 </a>
               </li>
             </Link>
@@ -104,25 +104,8 @@ const sidebar = ({ isMobileActive }) => {
                                 <span>Chat</span>
                             </a>
                         </li> */}
-            <li class="sidebar-menu-group-title">Authentication</li>
 
-            <Link to="/login">
-              <li>
-                <a>
-                  <LoginIcon className="me-3"></LoginIcon>
 
-                  <span>Login Page</span>
-                </a>
-              </li>
-            </Link>
-            <Link to="/register">
-              <li>
-                <a>
-                  <HowToRegIcon className="me-3"></HowToRegIcon>
-                  <span>Register Page</span>
-                </a>
-              </li>
-            </Link>
 
             <li class="sidebar-menu-group-title">Settings</li>
             <Link to="/viewProfile">
