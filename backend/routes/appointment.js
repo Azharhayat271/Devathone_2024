@@ -9,6 +9,6 @@ router.post('/slots', createSlot);
 router.get('/slots', getSlots);
 
 // Route to book a slot
-router.patch('/slots/book-slot/:slotId', bookSlot);
+router.patch('/book-slot/:slotId', bookSlot);
 
 module.exports = router;

@@ -21,9 +21,7 @@ const bookSlotAPI = async (slotId) => {
   } catch (err) {
     if (err && err.response && err.response.data && err.response.data.message) {
       resolved.error = err.response.data.message;
-    } else {
-      resolved.error = 'Something went wrong';
-    }
+    } 
   }
 
   return resolved;
