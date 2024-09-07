@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap import
 
 const WelcomePage = () => {
   const [greeting, setGreeting] = useState("");
@@ -30,18 +31,29 @@ const WelcomePage = () => {
       style={{
         height: "100vh",
         background: "linear-gradient(135deg, #74ebd5, #acb6e5)",
+        paddingTop: "80px",
       }}
     >
       <div className="text-center">
         {/* Welcome Message */}
-        <h1 className="display-4 mb-4 animate__animated animate__fadeIn">
+        <h1
+          className="display-4 mb-4"
+          style={{
+            fontWeight: "bold",
+            color: "#333",
+            textShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)",
+          }}
+        >
           {greeting}, {userName}!
         </h1>
-        <p className="lead animate__animated animate__fadeIn animate__delay-1s">
-          Welcome to your personalized dashboard
+        <p
+          className="lead"
+          style={{ color: "#666", fontSize: "1.5rem" }}
+        >
+          We're here to help you every step of the way.
         </p>
 
-        {/* Floating Circles using Bootstrap classes */}
+        {/* Decorative Floating Circles */}
         <div
           className="position-absolute"
           style={{
