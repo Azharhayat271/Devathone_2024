@@ -11,7 +11,7 @@ import Weclome from "./pages/dashboard/index";
 import DashboardDesign from "./pages/dashboard/newDashboardDesign";
 import Login from "./pages/Auth/login";
 import Register from "./pages/Auth/signup";
-import FormLayout from "./components/forms/form_layout";
+import FormLayout from "./components/forms/MedicalRecordForm";
 import FormformLayoutalidation from "./components/forms/form_validations";
 import NotFound from "./pages/error/page-404";
 import Table from "./components/dataviews/table";

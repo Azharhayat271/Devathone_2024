@@ -15,10 +15,12 @@ connectDB();
 
 const userRoutes = require("./routes/user");
 const appointmentRoutes = require("./routes/appointment");
+const medicalRecordRoutes = require("./routes/medicalRecord");
 
 // All routes
 app.use("/api/users", userRoutes);
 app.use("/api/appointment", appointmentRoutes);
+app.use("/api/medicalrecords", medicalRecordRoutes);
 
 app.get("/", (req, res) => {
   res.send("We are live");
