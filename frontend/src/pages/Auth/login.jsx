@@ -103,10 +103,7 @@ const Login = () => {
       <section className="auth bg-base d-flex flex-wrap">
         <div className="auth-left d-lg-block d-none">
           <div className="d-flex align-items-center flex-column h-100 justify-content-center">
-            <img
-              src={Img1}
-              alt=""
-            />
+            <img src={Img1} alt="" />
           </div>
         </div>
         <div className="auth-right py-32 px-24 d-flex flex-column justify-content-center">
@@ -132,18 +129,10 @@ const Login = () => {
                 Sign In
               </Typography>
 
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                align="center"
-              >
+              <Typography variant="body2" color="textSecondary" align="center">
                 Welcome back! Please enter your details
               </Typography>
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                sx={{ mt: 3 }}
-              >
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <TextField
                   variant="outlined"
                   fullWidth
@@ -252,11 +241,22 @@ const Login = () => {
                   sx={{ mt: 2 }}
                 >
                   Don’t have an account?{" "}
+                  <Link to="/register" className="text-primary-600 fw-semibold">
+                    Sign Up
+                  </Link>
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  align="center"
+                  sx={{ mt: 2 }}
+                >
+                  Are you Professional Doctor?{" "}
                   <Link
-                    to="/register"
+                    to="/doctor-signup"
                     className="text-primary-600 fw-semibold"
                   >
-                    Sign Up
+                    Sign Up Here
                   </Link>
                 </Typography>
                 <Box sx={{ mt: 2, display: "flex", justifyContent: "center" }}>

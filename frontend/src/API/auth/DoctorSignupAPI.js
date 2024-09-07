@@ -8,6 +8,8 @@ export const RegisterAPI = async ({
   email,
   password,
   phoneNo,
+  speciality,
+  mmedicalLicense,
 }) => {
   let resolved = {
     error: null,
@@ -16,7 +18,7 @@ export const RegisterAPI = async ({
 
   try {
     let res = await axios({
-      url: "/api/users/register",
+      url: "/api/users/registerdoctor",
       method: "POST",
       data: {
         name,
@@ -25,6 +27,8 @@ export const RegisterAPI = async ({
         email,
         password,
         phoneNo,
+        speciality,
+        mmedicalLicense,
       },
     });
     resolved.data = res.data;
