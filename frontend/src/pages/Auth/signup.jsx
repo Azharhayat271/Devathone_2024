@@ -146,7 +146,10 @@ const Signup = () => {
       <section className="auth bg-base d-flex flex-wrap">
         <div className="auth-left d-lg-block d-none">
           <div className="d-flex align-items-center flex-column h-100 justify-content-center">
-            <img src={Img1} alt="" />
+            <img
+              src={Img1}
+              alt=""
+            />
           </div>
         </div>
         <div className="auth-right py-32 px-24 d-flex flex-column justify-content-center">
@@ -162,15 +165,23 @@ const Signup = () => {
                 mx: "auto",
               }}
             >
-              <img
+              {/* <img
                 src={Img2}
                 alt="Logo"
                 style={{ marginBottom: "40px", maxWidth: "290px" }}
-              />
-              <Typography component="h1" variant="h5">
+              /> */}
+              <Typography
+                component="h1"
+                variant="h5"
+                style={{ color: "#4D6E72" }}
+              >
                 Sign Up
               </Typography>
-              <Typography variant="body2" color="textSecondary" align="center">
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                align="center"
+              >
                 Welcome back! Please enter your details
               </Typography>
               <Box
@@ -342,9 +353,14 @@ const Signup = () => {
                   color="textSecondary"
                   align="center"
                 >
-                  <Link to="/login">Already have an account? Login</Link>
+                  <Link to="/login">
+                    Already have an account?{" "}
+                    <span style={{ color: "blue", fontWeight: "bold" }}>
+                      Login
+                    </span>
+                  </Link>
                 </Typography>
-                <Typography
+                {/* <Typography
                   variant="body2"
                   color="textSecondary"
                   align="center"
@@ -389,10 +405,14 @@ const Signup = () => {
                       </>
                     )}
                   </button>
-                </div>
+                </div> */}
               </Box>
             </Box>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Snackbar
+              open={open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
               <Alert
                 onClose={handleClose}
                 severity={severity}

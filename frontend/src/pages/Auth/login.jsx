@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Img1 from "./../../assets/images/auth/auth/auth-img.png";
-import Img2 from "./../../assets/images/auth/logo.png";
+import Img2 from "./../../assets/images/logo1.png";
 import EmailIcon from "@mui/icons-material/Email";
 import HttpsIcon from "@mui/icons-material/Https";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 import { auth, googleProvider, signInWithPopup } from "../../../firebase";
 import { LoginGoogleAPI } from "./../../API/auth/LoginwithGoogle";
-import {LoginAPI} from "./../../API/auth/login";
+import { LoginAPI } from "./../../API/auth/login";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,13 +33,13 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    debugger
+    debugger;
     e.preventDefault();
     setLoading(true);
 
     try {
       // Replace with your API login call
-      debugger
+      debugger;
       const response = await LoginAPI({ email, password });
       if (response.error) {
         setError(response.error);
@@ -103,7 +103,10 @@ const Login = () => {
       <section className="auth bg-base d-flex flex-wrap">
         <div className="auth-left d-lg-block d-none">
           <div className="d-flex align-items-center flex-column h-100 justify-content-center">
-            <img src={Img1} alt="" />
+            <img
+              src={Img1}
+              alt=""
+            />
           </div>
         </div>
         <div className="auth-right py-32 px-24 d-flex flex-column justify-content-center">
@@ -121,13 +124,26 @@ const Login = () => {
                 alt="Logo"
                 style={{ marginBottom: "40px", maxWidth: "290px" }}
               />
-              <Typography component="h1" variant="h5">
+              <Typography
+                component="h1"
+                variant="h5"
+                style={{ color: "#4D6E72" }}
+              >
                 Sign In
               </Typography>
-              <Typography variant="body2" color="textSecondary" align="center">
+
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                align="center"
+              >
                 Welcome back! Please enter your details
               </Typography>
-              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                sx={{ mt: 3 }}
+              >
                 <TextField
                   variant="outlined"
                   fullWidth
@@ -187,7 +203,7 @@ const Login = () => {
                 >
                   {loading ? <CircularProgress size={24} /> : "Sign In"}
                 </Button>
-                <div className="mt-32 center-border-horizontal text-center">
+                {/* <div className="mt-32 center-border-horizontal text-center">
                   <span className="bg-base z-1 px-4">Or sign in with</span>
                 </div>
                 <Box
@@ -228,7 +244,7 @@ const Login = () => {
                       </>
                     )}
                   </Button>
-                </Box>
+                </Box> */}
                 <Typography
                   variant="body2"
                   color="textSecondary"
@@ -236,7 +252,10 @@ const Login = () => {
                   sx={{ mt: 2 }}
                 >
                   Don’t have an account?{" "}
-                  <Link to="/register" className="text-primary-600 fw-semibold">
+                  <Link
+                    to="/register"
+                    className="text-primary-600 fw-semibold"
+                  >
                     Sign Up
                   </Link>
                 </Typography>
