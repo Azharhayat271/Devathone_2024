@@ -6,10 +6,10 @@ import { deepOrange } from '@mui/material/colors';
 import { getUserByIdAPI } from "../../API/users/getUserbyID";
 
 const UserView = () => {
-    const { userId } = useParams(); // Correctly get userId from URL params
-    const [user, setUser] = useState(null); // Store user data
-    const [loading, setLoading] = useState(true); // Track loading state
-    const [error, setError] = useState(null); // Track errors
+    const { userId } = useParams();
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -23,7 +23,6 @@ const UserView = () => {
             if (response.error) {
                 setError(response.error);
             } else {
-
                 setUser(response.data.user);
             }
             setLoading(false);
@@ -33,7 +32,7 @@ const UserView = () => {
     }, [userId]);
 
     const getInitials = (name) => {
-        if (!name) return ''; // Handle undefined or null name
+        if (!name) return '';
         const names = name.split(' ');
         return names.length > 1 ? `${names[0][0]}${names[1][0]}` : names[0][0];
     };
@@ -160,6 +159,33 @@ const UserView = () => {
                             disabled
                         />
                     </Grid>
+                    {/* Conditionally render additional fields for doctors */}
+                    {user.role === 'doctor' && (
+                        <>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Speciality"
+                                    value={user.speciality || ''}
+                                    InputProps={{
+                                        startAdornment: <Person sx={{ mr: 1 }} />, // You can use an appropriate icon
+                                    }}
+                                    disabled
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Medical License"
+                                    value={user.medicalLicense || ''}
+                                    InputProps={{
+                                        startAdornment: <Person sx={{ mr: 1 }} />, // You can use an appropriate icon
+                                    }}
+                                    disabled
+                                />
+                            </Grid>
+                        </>
+                    )}
                 </Grid>
             </form>
         </Box>
