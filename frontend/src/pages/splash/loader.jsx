@@ -16,7 +16,7 @@ const SplashScreen = () => {
             } else {
                 navigate('/login');
             }
-        }, 5000); // Adjust the time as needed (e.g., 3000ms = 3 seconds)
+        }, 3000); // Adjust the time as needed (e.g., 3000ms = 3 seconds)
 
         return () => clearTimeout(timer);
     }, [navigate]);

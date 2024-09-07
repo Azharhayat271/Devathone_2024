@@ -74,7 +74,7 @@ const DoctorSignup = () => {
           setMessage(result.error || "An error occurred");
           setSeverity("error");
         } else {
-          setMessage("Registration successful!");
+          setMessage("Registration successful! Please check your email to verify your account.");
           setSeverity("success");
           setTimeout(() => {
             navigate("/login");
