@@ -10,6 +10,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; // Icon for C
 import SettingsIcon from "@mui/icons-material/Settings"; // Icon for Profile Settings
 import LogoutIcon from "@mui/icons-material/Logout"; // Icon for Logout
 import DashboardIcon from "@mui/icons-material/Dashboard"; // Icon for Dashboard
+import Typography from "@mui/material/Typography"; // Material UI Typography for text
 
 const Sidebar = ({ isMobileActive }) => {
   const [mobileActive, setMobileActive] = useState(false);
@@ -38,23 +39,35 @@ const Sidebar = ({ isMobileActive }) => {
         >
           <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
         </button>
-        <div>
-          <a className="sidebar-logo">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center", // Align logo and text vertically with other elements
+            padding: "10px 20px", // Adjust padding to match the top bar's spacing
+          }}
+        >
+          <a
+            className="sidebar-logo"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              paddingTop: "20px", // Adjust this value as needed
+              border: "none", // Ensure no border
+              boxShadow: "none", // Ensure no shadow
+            }}
+          >
             <img
               src={Logo}
               alt="site logo"
               className="light-logo"
+              style={{ marginRight: "10px" }} // Space between logo and text
             />
-            <img
-              src={Logo}
-              alt="site logo"
-              className="dark-logo"
-            />
-            <img
-              src={LogoIcon}
-              alt="site logo"
-              className="logo-icon"
-            />
+            <Typography
+              variant="h6"
+              style={{ color: "#4D6E72", fontWeight: "bold" }}
+            >
+            Health Portal
+            </Typography>
           </a>
         </div>
         <div className="sidebar-menu-area open">
